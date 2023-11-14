@@ -1,0 +1,47 @@
+version: "3"
+services:
+  kinokuniya-app-web:
+    extends:
+      file: ../Kinokuniya-Audiobook-PHP/docker-compose.yml
+      service: web
+    networks:
+      - kinokuniya-network
+  kinokuniya-app-db:
+    extends:
+      file: ../Kinokuniya-Audiobook-PHP/docker-compose.yml
+      service: mysql
+    networks:
+      - kinokuniya-network
+  kinokuniya-premium-app:
+    extends:
+      file: ../Kinokuniya-Premium-App/docker-compose.yml
+      service: kino-premium
+    networks:
+      - kinokuniya-network
+  kinokuniya-rest-service-server:
+    extends:
+      file: ../Kinokuniya-Audiobook-REST/docker-compose.yml
+      service: rest-api
+    networks:
+      - kinokuniya-network
+  kinokuniya-rest-service-db:
+    extends:
+      file: ../Kinokuniya-Audiobook-REST/docker-compose.yml
+      service: postgresql
+    networks:
+      - kinokuniya-network
+  # kinokuniya-soap-service-soap:
+  #   extends:
+  #     file: ../kinokuniya-soap-service/docker-compose.yml
+  #     service: soapservice
+  #   networks:
+  #     - kinokuniya-network
+  # kinokuniya-soap-service-db:
+  #   extends:
+  #     file: ../kinokuniya-soap-service/docker-compose.yml
+  #     service: mysql-soap
+  #   networks:
+  #     - kinokuniya-network
+
+networks:
+  kinokuniya-network:
