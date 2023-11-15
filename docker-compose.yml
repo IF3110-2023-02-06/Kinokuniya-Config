@@ -30,18 +30,18 @@ services:
       service: postgresql
     networks:
       - kinokuniya-network
-  # kinokuniya-soap-service-soap:
-  #   extends:
-  #     file: ../kinokuniya-soap-service/docker-compose.yml
-  #     service: soapservice
-  #   networks:
-  #     - kinokuniya-network
-  # kinokuniya-soap-service-db:
-  #   extends:
-  #     file: ../kinokuniya-soap-service/docker-compose.yml
-  #     service: mysql-soap
-  #   networks:
-  #     - kinokuniya-network
+  kinokuniya-soap-service-server:
+    extends:
+      file: ../Kinokuniya-Audiobook-SOAP/docker-compose.yml
+      service: soap-service-web
+    networks:
+      - kinokuniya-network
+  kinokuniya-soap-service-db:
+    extends:
+      file: ../Kinokuniya-Audiobook-SOAP/docker-compose.yml
+      service: soap-service-db
+    networks:
+      - kinokuniya-network
 
 networks:
   kinokuniya-network:
