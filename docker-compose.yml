@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 services:
   kinokuniya-app-web:
     extends:
@@ -30,16 +30,16 @@ services:
       service: postgresql
     networks:
       - kinokuniya-network
-  kinokuniya-soap-service-server:
-    extends:
-      file: ../Kinokuniya-Audiobook-SOAP/docker-compose.yml
-      service: soap-service-web
-    networks:
-      - kinokuniya-network
   kinokuniya-soap-service-db:
     extends:
       file: ../Kinokuniya-Audiobook-SOAP/docker-compose.yml
       service: soap-service-db
+    networks:
+      - kinokuniya-network
+  kinokuniya-soap-service-server:
+    extends:
+      file: ../Kinokuniya-Audiobook-SOAP/docker-compose.yml
+      service: soap-service-web
     networks:
       - kinokuniya-network
 
